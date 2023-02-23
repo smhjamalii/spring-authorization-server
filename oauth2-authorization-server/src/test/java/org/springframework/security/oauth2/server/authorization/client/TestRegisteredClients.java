@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2022 the original author or authors.
+ * Copyright 2020-2023 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,11 +31,14 @@ public class TestRegisteredClients {
 		return RegisteredClient.withId("registration-1")
 				.clientId("client-1")
 				.clientIdIssuedAt(Instant.now().truncatedTo(ChronoUnit.SECONDS))
-				.clientSecret("secret")
+				.clientSecret("secret-1")
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-				.redirectUri("https://example.com")
+				.redirectUri("https://example.com/callback-1")
+				.redirectUri("https://example.com/callback-2")
+				.redirectUri("https://example.com/callback-3")
+				.postLogoutRedirectUri("https://example.com/oidc-post-logout")
 				.scope("scope1");
 	}
 
@@ -43,13 +46,14 @@ public class TestRegisteredClients {
 		return RegisteredClient.withId("registration-2")
 				.clientId("client-2")
 				.clientIdIssuedAt(Instant.now().truncatedTo(ChronoUnit.SECONDS))
-				.clientSecret("secret")
+				.clientSecret("secret-2")
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
 				.redirectUri("https://example.com")
+				.postLogoutRedirectUri("https://example.com/oidc-post-logout")
 				.scope("scope1")
 				.scope("scope2");
 	}
